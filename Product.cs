@@ -5,18 +5,19 @@ namespace InventoryManagementSystem.ProductInfo
 {
     public class Product : ILoggable
     {
-        public static int ProductId { get; private set; }
+        private readonly int _Id;
+        public static int ProductIdCounter { get; private set; }
         public int ProductQuantity { get; set; }
         public string ProductName { get; set; }
         public double? ProductPrice { get; set; }
 
         public Product()
         {
-            ProductId++;
+            _Id = ProductIdCounter++;
         }
 
-        public override string ToString() => $"Id {ProductId} : Name = {ProductName}";
+        public override string ToString() => $"Id {_Id} : Name = {ProductName}";
 
-        public void Log() => Console.WriteLine($"Id {ProductId} : Name = {ProductName} , Quantity = {ProductQuantity} , Price = {ProductPrice}");
+        public void Log() => Console.WriteLine($"Id {_Id} : Name = {ProductName} , Quantity = {ProductQuantity} , Price = {ProductPrice}");
     }
 }

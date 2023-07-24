@@ -5,7 +5,8 @@ namespace InventoryManagementSystem.InventoryInfo
 {
     public class Inventory
     {
-        public int InventoryId { get; private set; }
+        private readonly int _Id;
+        public static int InventoryIdCounter { get; private set; }
         public string InventoryName { get; set; }
         private List<Product> ProductList;
 
@@ -18,10 +19,10 @@ namespace InventoryManagementSystem.InventoryInfo
         {
             InventoryName = inventoryName;
             ProductList = new List<Product>();
-            InventoryId++;
+            _Id = InventoryIdCounter++;
         }
 
-        public override string ToString() => $"Id {InventoryId} : Name = {InventoryName}";
+        public override string ToString() => $"Id {_Id} : Name = {InventoryName}";
 
         public void AddProduct(Product product) => ProductList.Add(product);
     }
