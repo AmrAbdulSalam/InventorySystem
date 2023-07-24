@@ -24,22 +24,8 @@ namespace InventoryManagementSystem.ProgramInfo
                 var selectedOpperation = Console.ReadLine();
 
                 if (selectedOpperation == "1")
-                {
-                    Console.Write("Product name : ");
-                    var prodcutName = Console.ReadLine();
-                    Console.Write("Product price : ");
-                    var prodcutPrice = Console.ReadLine();
-                    Console.Write("Product quantity : ");
-                    var prodcutQuantity = Console.ReadLine();
-
-                    var product = new Product()
-                    {
-                        ProductName = prodcutName,
-                        ProductPrice = Double.Parse(prodcutPrice),
-                        ProductQuantity = int.Parse(prodcutQuantity)
-                    };
-
-                    inventory.AddProduct(product);
+                { 
+                    inventory.AddProduct();
                     Console.WriteLine("Product was added successfully");
                 }
                 else if (selectedOpperation == "2")

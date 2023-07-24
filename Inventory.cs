@@ -24,7 +24,23 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public override string ToString() => $"Id {_Id} : Name = {InventoryName}";
 
-        public void AddProduct(Product product) => ProductList.Add(product);
+        public void AddProduct()
+        {
+            Console.Write("Product name : ");
+            var prodcutName = Console.ReadLine();
+            Console.Write("Product price : ");
+            var prodcutPrice = Console.ReadLine();
+            Console.Write("Product quantity : ");
+            var prodcutQuantity = Console.ReadLine();
+
+            var product = new Product()
+            {
+                ProductName = prodcutName,
+                ProductPrice = Double.Parse(prodcutPrice),
+                ProductQuantity = int.Parse(prodcutQuantity)
+            };
+            ProductList.Add(product);
+        }
 
         public void ViewProdcuts()
         {
