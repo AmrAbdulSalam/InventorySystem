@@ -34,17 +34,18 @@ namespace InventoryManagementSystem.InventoryInfo
             }
         }
 
-        public void SearchForProduct(string productName)
+        public bool SearchForProduct(string productName)
         {
             foreach (var product in ProductList)
             {
                 if(product.ProductName == productName)
                 {
                     product.Log();
-                    return;
+                    return true;
                 }
             }
             Console.WriteLine("Product was not found");
+            return false;
         }
     }
 }
