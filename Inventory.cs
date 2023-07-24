@@ -64,5 +64,19 @@ namespace InventoryManagementSystem.InventoryInfo
             }
             Console.WriteLine("Product was not found");
         }
+
+        public void DeleteProduct(string productName)
+        {
+            foreach(var product in ProductList)
+            {
+                if(product.ProductName == productName)
+                {
+                    ProductList.Remove(product);
+                    Console.WriteLine("Product is deleted");
+                    return;
+                }
+            }
+            Console.WriteLine("Product was not found");
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 Console.WriteLine(" 2- View all products ");
                 Console.WriteLine(" 3- Search for a product ");
                 Console.WriteLine(" 4- Edit product ");
+                Console.WriteLine(" 5- Delete product ");
 
                 var selectedOpperation = Console.ReadLine();
 
@@ -55,6 +56,12 @@ namespace InventoryManagementSystem.ProgramInfo
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
                     inventory.EditProduct(prodcutName);
+                }
+                else if (selectedOpperation == "5")
+                {
+                    Console.Write("Product name : ");
+                    var prodcutName = Console.ReadLine();
+                    inventory.DeleteProduct(prodcutName);
                 }
                 else
                 {
