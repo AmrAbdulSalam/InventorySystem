@@ -1,4 +1,6 @@
 ﻿using System;
+using InventoryManagementSystem.ProductInfo;
+using InventoryManagementSystem.InventoryInfo;
 
 namespace InventoryManagementSystem.ProgramInfo
 {
@@ -6,7 +8,40 @@ namespace InventoryManagementSystem.ProgramInfo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world");
+            var inventory = new Inventory("Inventory");
+
+            while (true)
+            {
+
+                Console.WriteLine("*** Please choose a number ***");
+                Console.WriteLine(" 1- Add a new product ");
+
+                var selectedOpperation = Console.ReadLine();
+
+                if (selectedOpperation == "1")
+                {
+                    Console.Write("Product name : ");
+                    var prodcutName = Console.ReadLine();
+                    Console.Write("Product price : ");
+                    var prodcutPrice = Console.ReadLine();
+                    Console.Write("Product quantity : ");
+                    var prodcutQuantity = Console.ReadLine();
+
+                    var product = new Product()
+                    {
+                        ProductName = prodcutName,
+                        ProductPrice = Double.Parse(prodcutPrice),
+                        ProductQuantity = int.Parse(prodcutQuantity)
+                    };
+
+                    inventory.AddProduct(product);
+                    Console.WriteLine("Product was added successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input");
+                }
+            }
         }
     }
 }

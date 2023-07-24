@@ -23,5 +23,6 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public override string ToString() => $"Id {InventoryId} : Name = {InventoryName}";
 
+        public void AddProduct(Product product) => ProductList.Add(product);
     }
 }
