@@ -15,6 +15,7 @@ namespace InventoryManagementSystem.ProgramInfo
 
                 Console.WriteLine("*** Please choose a number ***");
                 Console.WriteLine(" 1- Add a new product ");
+                Console.WriteLine(" 2- View all products ");
 
                 var selectedOpperation = Console.ReadLine();
 
@@ -36,6 +37,10 @@ namespace InventoryManagementSystem.ProgramInfo
 
                     inventory.AddProduct(product);
                     Console.WriteLine("Product was added successfully");
+                }
+                else if (selectedOpperation == "2")
+                {
+                    inventory.ViewProdcuts();
                 }
                 else
                 {
