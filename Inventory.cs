@@ -47,5 +47,22 @@ namespace InventoryManagementSystem.InventoryInfo
             Console.WriteLine("Product was not found");
             return false;
         }
+
+        public void EditProduct (string productName)
+        {
+            foreach (var product in ProductList)
+            {
+                if (product.ProductName == productName)
+                {
+                    Console.Write("Product new name : ");
+                    product.ProductName = Console.ReadLine();
+                    Console.Write("Product new price : ");
+                    product.ProductPrice = Double.Parse(Console.ReadLine());
+                    Console.Write("Product new quantity : ");
+                    product.ProductQuantity = int.Parse(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("Product was not found");
+        }
     }
 }

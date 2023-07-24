@@ -17,6 +17,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 Console.WriteLine(" 1- Add a new product ");
                 Console.WriteLine(" 2- View all products ");
                 Console.WriteLine(" 3- Search for a product ");
+                Console.WriteLine(" 4- Edit product ");
 
                 var selectedOpperation = Console.ReadLine();
 
@@ -48,6 +49,12 @@ namespace InventoryManagementSystem.ProgramInfo
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
                     inventory.SearchForProduct(prodcutName);
+                }
+                else if (selectedOpperation == "4")
+                {
+                    Console.Write("Product name : ");
+                    var prodcutName = Console.ReadLine();
+                    inventory.EditProduct(prodcutName);
                 }
                 else
                 {
