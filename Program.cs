@@ -6,6 +6,7 @@ namespace InventoryManagementSystem.ProgramInfo
 {
     public class Program
     {
+
         static void Main(string[] args)
         {
             var inventory = new Inventory("Inventory");
@@ -24,8 +25,21 @@ namespace InventoryManagementSystem.ProgramInfo
                 var selectedOpperation = Console.ReadLine();
 
                 if (selectedOpperation == "1")
-                { 
-                    inventory.AddProduct();
+                {
+                    Console.Write("Product name : ");
+                    var prodcutName = Console.ReadLine();
+                    Console.Write("Product price : ");
+                    var prodcutPrice = Console.ReadLine();
+                    Console.Write("Product quantity : ");
+                    var prodcutQuantity = Console.ReadLine();
+
+                    var product = new Product()
+                    {
+                        ProductName = prodcutName,
+                        ProductPrice = Double.Parse(prodcutPrice),
+                        ProductQuantity = int.Parse(prodcutQuantity)
+                    };
+                    inventory.AddProduct(product);
                     Console.WriteLine("Product was added successfully");
                 }
                 else if (selectedOpperation == "2")
@@ -36,13 +50,35 @@ namespace InventoryManagementSystem.ProgramInfo
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    inventory.SearchForProduct(prodcutName);
+                    var prodcut = inventory.SearchForProduct(prodcutName);
+                    if (prodcut is not null)
+                    {
+                        prodcut.Log();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No product found");
+                    }
                 }
                 else if (selectedOpperation == "4")
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    inventory.EditProduct(prodcutName);
+                    Product? product = inventory.SearchForProduct(prodcutName);
+                    if (product is not null)
+                    {
+                        Console.Write("Product new name : ");
+                        var productNewName = Console.ReadLine();
+                        Console.Write("Product new price : ");
+                        var productNewPrice = Double.Parse(Console.ReadLine());
+                        Console.Write("Product new quantity : ");
+                        var productNewQuantitiy = int.Parse(Console.ReadLine());
+                        inventory.EditProduct(product, productNewName, productNewPrice, productNewQuantitiy);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No product found");
+                    }
                 }
                 else if (selectedOpperation == "5")
                 {

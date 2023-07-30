@@ -5,7 +5,7 @@ namespace InventoryManagementSystem.ProductInfo
 {
     public class Product : ILoggable
     {
-        private readonly int _Id;
+        private readonly int _id;
         public static int ProductIdCounter { get; private set; }
         public int ProductQuantity { get; set; }
         public string ProductName { get; set; }
@@ -13,11 +13,11 @@ namespace InventoryManagementSystem.ProductInfo
 
         public Product()
         {
-            _Id = ProductIdCounter++;
+            _id = ProductIdCounter++;
         }
 
-        public override string ToString() => $"Id {_Id} : Name = {ProductName}";
+        public override string ToString() => $"Id {_id} : Name = {ProductName}";
 
-        public void Log() => Console.WriteLine($"Id {_Id} : Name = {ProductName} , Quantity = {ProductQuantity} , Price = {ProductPrice}");
+        public void Log() => Console.WriteLine($"Id {_id} : Name = {ProductName} , Quantity = {ProductQuantity} , Price = {ProductPrice}");
     }
 }

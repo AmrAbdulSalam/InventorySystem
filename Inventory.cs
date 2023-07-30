@@ -5,10 +5,10 @@ namespace InventoryManagementSystem.InventoryInfo
 {
     public class Inventory
     {
-        private readonly int _Id;
+        private readonly int _id;
         public static int InventoryIdCounter { get; private set; }
         public string InventoryName { get; set; }
-        private List<Product> ProductList;
+        private List<Product> _products = new();
 
         public Inventory() : this("DefaultInventory")
         {
@@ -18,81 +18,50 @@ namespace InventoryManagementSystem.InventoryInfo
         public Inventory(string inventoryName)
         {
             InventoryName = inventoryName;
-            ProductList = new List<Product>();
-            _Id = InventoryIdCounter++;
+            _id = InventoryIdCounter++;
         }
 
-        public override string ToString() => $"Id {_Id} : Name = {InventoryName}";
+        public override string ToString() => $"Id {_id} : Name = {InventoryName}";
 
-        public void AddProduct()
+        public void AddProduct(Product product)
         {
-            Console.Write("Product name : ");
-            var prodcutName = Console.ReadLine();
-            Console.Write("Product price : ");
-            var prodcutPrice = Console.ReadLine();
-            Console.Write("Product quantity : ");
-            var prodcutQuantity = Console.ReadLine();
-
-            var product = new Product()
-            {
-                ProductName = prodcutName,
-                ProductPrice = Double.Parse(prodcutPrice),
-                ProductQuantity = int.Parse(prodcutQuantity)
-            };
-            ProductList.Add(product);
+            _products.Add(product);
         }
 
         public void ViewProdcuts()
         {
-            foreach(var product in ProductList)
+            foreach (var product in _products)
             {
                 product.Log();
             }
         }
 
-        public bool SearchForProduct(string productName)
+        public Product? SearchForProduct(string productName)
         {
-            foreach (var product in ProductList)
-            {
-                if(product.ProductName == productName)
-                {
-                    product.Log();
-                    return true;
-                }
-            }
-            Console.WriteLine("Product was not found");
-            return false;
-        }
-
-        public void EditProduct (string productName)
-        {
-            foreach (var product in ProductList)
+            foreach (var product in _products)
             {
                 if (product.ProductName == productName)
                 {
-                    Console.Write("Product new name : ");
-                    product.ProductName = Console.ReadLine();
-                    Console.Write("Product new price : ");
-                    product.ProductPrice = Double.Parse(Console.ReadLine());
-                    Console.Write("Product new quantity : ");
-                    product.ProductQuantity = int.Parse(Console.ReadLine());
+                    return product;
                 }
             }
-            Console.WriteLine("Product was not found");
+            return null;
+        }
+
+        public void EditProduct(Product product, string newName, double newPrice, int newQuantity)
+        {
+            product.ProductName = newName;
+            product.ProductPrice = newPrice;
+            product.ProductQuantity = newQuantity;
         }
 
         public void DeleteProduct(string productName)
         {
-            foreach(var product in ProductList)
+            Product? product = SearchForProduct(productName);
+            if (product is not null)
             {
-                if(product.ProductName == productName)
-                {
-                    ProductList.Remove(product);
-                    Console.WriteLine("Product is deleted");
-                    return;
-                }
+                _products.Remove(product);
             }
-            Console.WriteLine("Product was not found");
         }
     }
 }
