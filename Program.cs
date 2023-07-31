@@ -51,7 +51,7 @@ namespace InventoryManagementSystem.ProgramInfo
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
                     var prodcut = inventory.SearchForProduct(prodcutName);
-                    if (prodcut is not null)
+                    if (prodcut != null)
                     {
                         prodcut.Log();
                     }
@@ -65,7 +65,7 @@ namespace InventoryManagementSystem.ProgramInfo
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
                     Product? product = inventory.SearchForProduct(prodcutName);
-                    if (product is not null)
+                    if (product != null)
                     {
                         Console.Write("Product new name : ");
                         var productNewName = Console.ReadLine();
