@@ -1,5 +1,6 @@
 ﻿using System;
 using InventoryManagementSystem.ProductInfo;
+using InventorySystem;
 
 namespace InventoryManagementSystem.InventoryInfo
 {
@@ -7,7 +8,7 @@ namespace InventoryManagementSystem.InventoryInfo
     {
         public string InventoryName { get; set; }
         private List<Product> _products = new();
-
+        private Connection _connection = new();
         public Inventory() : this("DefaultInventory")
         {
 
@@ -22,43 +23,37 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void AddProduct(Product product)
         {
-            _products.Add(product);
+            var query = $"INSERT INTO Products VALUES ('{product.ProductName}' , {product.ProductPrice} , {product.ProductQuantity})";
+            _connection.ExecuteQuery(query);
         }
 
-        public void ViewProdcuts()
+        public async Task ViewProdcutsAsync()
         {
-            foreach (var product in _products)
-            {
-                product.Log();
-            }
+            var query = "SELECT * FROM Products";
+            var output = await _connection.ViewProduct(query);
+            Console.WriteLine(output);
         }
 
-        public Product? SearchForProduct(string productName)
+        public async Task<String> SearchForProductAsync(string productName)
         {
-            foreach (var product in _products)
-            {
-                if (product.ProductName == productName)
-                {
-                    return product;
-                }
-            }
-            return null;
+            var query = $"SELECT * FROM Products where [Product Name] = '{productName}' ";
+            var output = await _connection.ViewProduct(query);
+            return output;
         }
 
-        public void EditProduct(Product product, string newName, double newPrice, int newQuantity)
+        public void EditProduct(string product, string newName, double newPrice, int newQuantity)
         {
-            product.ProductName = newName;
-            product.ProductPrice = newPrice;
-            product.ProductQuantity = newQuantity;
+            var query = $"UPDATE Products " +
+                $"SET [Product Name] = '{newName}' , [Product Price] = {newPrice} , [Product Quantity] = {newQuantity}" +
+                $"WHERE [Product Name] = '{product}'";
+            _connection.ExecuteQuery(query);
         }
 
         public void DeleteProduct(string productName)
         {
-            Product? product = SearchForProduct(productName);
-            if (product != null)
-            {
-                _products.Remove(product);
-            }
+            var query = "DELETE FROM Products " +
+                $"WHERE [Product Name] = '{productName}'";
+            _connection.ExecuteQuery(query);
         }
     }
 }
