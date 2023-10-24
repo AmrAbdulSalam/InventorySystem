@@ -7,9 +7,8 @@ namespace InventorySystem
     class Connection
     {
         private readonly string _connectionString = "Data Source=DESKTOP-NUK8KNC\\SQLEXPRESS;Initial Catalog=Inventory;Integrated Security=True";
-        public void InsertToDatabase(Product product)
+        public void ExecuteQuery(string query)
         {
-            var query = $"INSERT INTO Products VALUES ('{product.ProductName}' , {product.ProductPrice} , {product.ProductQuantity})";
             using (var con = new SqlConnection(_connectionString))
             {
                 con.Open();
