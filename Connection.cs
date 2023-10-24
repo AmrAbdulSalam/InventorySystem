@@ -18,12 +18,11 @@ namespace InventorySystem
             }
         }
 
-        public async Task<string> ViewProductsAsync()
+        public async Task<string> ViewProduct(string query)
         {
             using (var con = new SqlConnection(_connectionString))
             {
                 await con.OpenAsync();
-                var query = "SELECT * FROM Products";
                 var output = "Product Name \t Product Price \t Product Quant\n";
                 using (var cmd = new SqlCommand(query, con))
                 {
