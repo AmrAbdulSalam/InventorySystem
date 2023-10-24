@@ -1,13 +1,14 @@
 ﻿using System;
 using InventoryManagementSystem.ProductInfo;
 using InventoryManagementSystem.InventoryInfo;
+using InventorySystem;
 
 namespace InventoryManagementSystem.ProgramInfo
 {
     public class Program
     {
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var inventory = new Inventory("Inventory");
 
@@ -44,16 +45,16 @@ namespace InventoryManagementSystem.ProgramInfo
                 }
                 else if (selectedOpperation == "2")
                 {
-                    inventory.ViewProdcuts();
+                    await inventory.ViewProdcutsAsync();
                 }
                 else if (selectedOpperation == "3")
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    var prodcut = inventory.SearchForProduct(prodcutName);
+                    var prodcut = await inventory.SearchForProductAsync(prodcutName);
                     if (prodcut != null)
                     {
-                        prodcut.Log();
+                        Console.WriteLine(prodcut);
                     }
                     else
                     {
@@ -64,21 +65,15 @@ namespace InventoryManagementSystem.ProgramInfo
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    Product? product = inventory.SearchForProduct(prodcutName);
-                    if (product != null)
-                    {
+     
                         Console.Write("Product new name : ");
                         var productNewName = Console.ReadLine();
                         Console.Write("Product new price : ");
                         var productNewPrice = Double.Parse(Console.ReadLine());
                         Console.Write("Product new quantity : ");
                         var productNewQuantitiy = int.Parse(Console.ReadLine());
-                        inventory.EditProduct(product, productNewName, productNewPrice, productNewQuantitiy);
-                    }
-                    else
-                    {
-                        Console.WriteLine("No product found");
-                    }
+                       inventory.EditProduct(prodcutName, productNewName, productNewPrice, productNewQuantitiy);
+
                 }
                 else if (selectedOpperation == "5")
                 {
