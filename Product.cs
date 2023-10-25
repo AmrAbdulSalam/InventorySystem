@@ -1,5 +1,6 @@
 ﻿using System;
 using InventoryManagementSystem.LoggableInterface;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace InventoryManagementSystem.ProductInfo
 {
@@ -11,6 +12,8 @@ namespace InventoryManagementSystem.ProductInfo
         public string ProductName { get; set; }
         [BsonElement("ProductPrice")]
         public double? ProductPrice { get; set; }
+        [BsonId]
+        public ObjectId _id { get; set; }
 
         public Product()
         {
