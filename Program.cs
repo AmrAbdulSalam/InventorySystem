@@ -7,7 +7,7 @@ namespace InventoryManagementSystem.ProgramInfo
     public class Program
     {
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var inventory = new Inventory("Inventory");
 
@@ -44,13 +44,13 @@ namespace InventoryManagementSystem.ProgramInfo
                 }
                 else if (selectedOpperation == "2")
                 {
-                    inventory.ViewProdcuts();
+                    await inventory.ViewProdcuts();
                 }
                 else if (selectedOpperation == "3")
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    var prodcut = inventory.SearchForProduct(prodcutName);
+                    var prodcut = await inventory.SearchForProduct(prodcutName);
                     if (prodcut != null)
                     {
                         prodcut.Log();
@@ -64,7 +64,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    Product? product = inventory.SearchForProduct(prodcutName);
+                    Product? product = await inventory.SearchForProduct(prodcutName);
                     if (product != null)
                     {
                         Console.Write("Product new name : ");

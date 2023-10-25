@@ -1,5 +1,6 @@
 ﻿using System;
 using InventoryManagementSystem.ProductInfo;
+using InventorySystem;
 
 namespace InventoryManagementSystem.InventoryInfo
 {
@@ -22,20 +23,22 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void AddProduct(Product product)
         {
-            _products.Add(product);
+            Connection.InsertProduct(product);
         }
 
-        public void ViewProdcuts()
+        public async Task ViewProdcuts()
         {
-            foreach (var product in _products)
+            var allProducts = await Connection.ViewProductsAsync();
+            foreach (var product in allProducts)
             {
                 product.Log();
             }
         }
 
-        public Product? SearchForProduct(string productName)
+        public async Task<Product?> SearchForProduct(string productName)
         {
-            foreach (var product in _products)
+            var allProducts = await Connection.ViewProductsAsync();
+            foreach (var product in allProducts)
             {
                 if (product.ProductName == productName)
                 {
@@ -47,18 +50,17 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void EditProduct(Product product, string newName, double newPrice, int newQuantity)
         {
+            var oldName = product.ProductName;
             product.ProductName = newName;
             product.ProductPrice = newPrice;
             product.ProductQuantity = newQuantity;
+
+            Connection.UpdateProduct(oldName, product);
         }
 
         public void DeleteProduct(string productName)
         {
-            Product? product = SearchForProduct(productName);
-            if (product != null)
-            {
-                _products.Remove(product);
-            }
+            Connection.DelteProduct(productName);
         }
     }
 }
