@@ -22,5 +22,11 @@ namespace InventorySystem
             return allProducts;
         }
 
+        public static void DelteProduct(string productName)
+        {
+            var filter = Builders<Product>.Filter.Eq(x => x.ProductName , productName);
+            _collection.DeleteOne(filter);
+        }
+
     }
 }

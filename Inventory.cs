@@ -57,11 +57,7 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void DeleteProduct(string productName)
         {
-            Product? product = SearchForProduct(productName);
-            if (product != null)
-            {
-                _products.Remove(product);
-            }
+            Connection.DelteProduct(productName);
         }
     }
 }
