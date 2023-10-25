@@ -1,5 +1,6 @@
 ﻿using System;
 using InventoryManagementSystem.ProductInfo;
+using InventorySystem;
 
 namespace InventoryManagementSystem.InventoryInfo
 {
@@ -22,7 +23,7 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void AddProduct(Product product)
         {
-            _products.Add(product);
+            Connection.InsertProduct(product);
         }
 
         public void ViewProdcuts()
