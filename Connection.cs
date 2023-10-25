@@ -28,5 +28,15 @@ namespace InventorySystem
             _collection.DeleteOne(filter);
         }
 
+        public static void UpdateProduct(string productName , Product product)
+        {
+            var filter = Builders<Product>.Filter.Eq(x => x.ProductName, productName);
+            var update = Builders<Product>.Update.Set(x => x.ProductName, product.ProductName)
+                .Set(x => x.ProductPrice, product.ProductPrice)
+                .Set(x => x.ProductQuantity, product.ProductQuantity);
+
+            _collection.UpdateOne(filter,update);
+        }
+
     }
 }

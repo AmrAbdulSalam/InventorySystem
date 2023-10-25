@@ -50,9 +50,12 @@ namespace InventoryManagementSystem.InventoryInfo
 
         public void EditProduct(Product product, string newName, double newPrice, int newQuantity)
         {
+            var oldName = product.ProductName;
             product.ProductName = newName;
             product.ProductPrice = newPrice;
             product.ProductQuantity = newQuantity;
+
+            Connection.UpdateProduct(oldName, product);
         }
 
         public void DeleteProduct(string productName)
