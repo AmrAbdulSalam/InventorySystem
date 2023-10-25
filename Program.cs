@@ -7,7 +7,7 @@ namespace InventoryManagementSystem.ProgramInfo
     public class Program
     {
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var inventory = new Inventory("Inventory");
 
@@ -44,7 +44,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 }
                 else if (selectedOpperation == "2")
                 {
-                    inventory.ViewProdcuts();
+                    await inventory.ViewProdcuts();
                 }
                 else if (selectedOpperation == "3")
                 {

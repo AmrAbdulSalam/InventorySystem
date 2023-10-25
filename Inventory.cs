@@ -26,9 +26,10 @@ namespace InventoryManagementSystem.InventoryInfo
             Connection.InsertProduct(product);
         }
 
-        public void ViewProdcuts()
+        public async Task ViewProdcuts()
         {
-            foreach (var product in _products)
+            var allProducts = await Connection.ViewProductsAsync();
+            foreach (var product in allProducts)
             {
                 product.Log();
             }

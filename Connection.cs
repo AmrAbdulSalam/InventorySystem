@@ -16,5 +16,11 @@ namespace InventorySystem
             _collection.InsertOne(product);
         }
 
+        public static Task<List<Product>> ViewProductsAsync()
+        {
+            var allProducts = _collection.Find(new BsonDocument()).ToListAsync();
+            return allProducts;
+        }
+
     }
 }
