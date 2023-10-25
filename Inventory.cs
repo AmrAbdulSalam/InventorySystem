@@ -35,9 +35,10 @@ namespace InventoryManagementSystem.InventoryInfo
             }
         }
 
-        public Product? SearchForProduct(string productName)
+        public async Task<Product?> SearchForProduct(string productName)
         {
-            foreach (var product in _products)
+            var allProducts = await Connection.ViewProductsAsync();
+            foreach (var product in allProducts)
             {
                 if (product.ProductName == productName)
                 {

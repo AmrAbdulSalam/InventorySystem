@@ -50,7 +50,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    var prodcut = inventory.SearchForProduct(prodcutName);
+                    var prodcut = await inventory.SearchForProduct(prodcutName);
                     if (prodcut != null)
                     {
                         prodcut.Log();
@@ -64,7 +64,7 @@ namespace InventoryManagementSystem.ProgramInfo
                 {
                     Console.Write("Product name : ");
                     var prodcutName = Console.ReadLine();
-                    Product? product = inventory.SearchForProduct(prodcutName);
+                    Product? product = await inventory.SearchForProduct(prodcutName);
                     if (product != null)
                     {
                         Console.Write("Product new name : ");
